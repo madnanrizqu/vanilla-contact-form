@@ -9,7 +9,7 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
   </head>
-  <body class="h-dvh flex flex-col gap-14 items-center pt-10">
+  <body class="h-dvh flex flex-col gap-14 pb-36 items-center pt-10">
     <header class="flex flex-col gap-2">
       <h1 class="text-3xl text-center">Contact Form</h1>
       <form id="search-form" action="" class="flex flex-col gap-2 text-sm">
@@ -39,7 +39,7 @@
       </form>
     </header>
 
-    <main class="flex flex-col md:flex-row gap-4">
+    <main class="grid md:grid-cols-2 gap-4">
       <form
         id="add-contact-form"
         action="/"
@@ -106,10 +106,10 @@
         </div>
       </form>
 
-      <div id="contacts_list"></div>
+      <div id="contacts_list" class="md:h-[28.25rem] md:overflow-auto"></div>
     </main>
 
-    <footer class="fixed bottom-0 p-4 text-xs">
+    <footer class="md:fixed md:bottom-0 p-4 text-xs md:z-1">
       Made with ❤️ by madnanrizqu
     </footer>
     <script src="/db.js"></script>
