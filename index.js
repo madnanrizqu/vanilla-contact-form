@@ -1,13 +1,27 @@
-let db = [
-  {
-    id: 0,
-    name: "Muhammad Adnan Rizqullah",
-    phone: "+6285156562419",
-    email: "madnanrizqullah@gmail.com",
-    address: "Jl Jatimulya No. 15",
-    age: 26,
+const db = {
+  data: [
+    {
+      id: 0,
+      name: "Muhammad Adnan Rizqullah",
+      phone: "+6285156562419",
+      email: "madnanrizqullah@gmail.com",
+      address: "Jl Jatimulya No. 15",
+      age: 26,
+    },
+  ],
+  getAll() {
+    return this.data;
   },
-];
+  count() {
+    return this.data.length;
+  },
+  newId() {
+    return this.data.length + 1;
+  },
+  append(contact) {
+    this.data = [...this.data, contact];
+  },
+};
 
 const main = () => {
   setupEventListeners();
@@ -26,17 +40,14 @@ const addContact = (e) => {
 
   const contactData = new FormData(addForm);
 
-  db = [
-    ...db,
-    {
-      id: db.length + 1,
-      name: contactData.get("name"),
-      phone: contactData.get("phone"),
-      email: contactData.get("email"),
-      address: contactData.get("address"),
-      age: contactData.get("age"),
-    },
-  ];
+  db.append({
+    id: db.newId(),
+    name: contactData.get("name"),
+    phone: contactData.get("phone"),
+    email: contactData.get("email"),
+    address: contactData.get("address"),
+    age: contactData.get("age"),
+  });
 
   addForm.reset();
 
@@ -47,7 +58,7 @@ const renderContactList = () => {
   const listContainer = document.getElementById("contacts_list");
   listContainer.innerHTML = "";
 
-  if (db.length === 0) {
+  if (db.count() === 0) {
     listContainer.appendChild(
       document
         .createElement("p")
@@ -57,7 +68,7 @@ const renderContactList = () => {
 
   const list = document.createElement("ol");
 
-  db.forEach((row) => {
+  db.getAll().forEach((row) => {
     const contact = document.createElement("li");
     const contactInfo = document.createElement("ul");
 
