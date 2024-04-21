@@ -1,28 +1,3 @@
-const db = {
-  data: [
-    {
-      id: 0,
-      name: "Muhammad Adnan Rizqullah",
-      phone: "+6285156562419",
-      email: "madnanrizqullah@gmail.com",
-      address: "Jl Jatimulya No. 15",
-      age: 26,
-    },
-  ],
-  getAll() {
-    return this.data;
-  },
-  count() {
-    return this.data.length;
-  },
-  newId() {
-    return this.data.length + 1;
-  },
-  append(contact) {
-    this.data = [...this.data, contact];
-  },
-};
-
 const main = () => {
   setupEventListeners();
   renderContactList();
@@ -71,12 +46,13 @@ const renderContactList = () => {
   list.classList.add("flex-col");
   list.classList.add("gap-4");
 
+  const hiddenProperties = ["id", "email", "address", "age"];
   db.getAll().forEach((row) => {
     const contact = document.createElement("li");
     const contactInfo = document.createElement("ul");
 
     Object.entries(row).forEach(([key, value]) => {
-      if (key === "id") {
+      if (hiddenProperties.includes(key)) {
         return;
       }
 
@@ -94,6 +70,16 @@ const renderContactList = () => {
 
       contactInfo.appendChild(contactProperty);
     });
+
+    const detailLink = document.createElement("a");
+    const detailLinkText = document.createTextNode("Detail");
+    detailLink.appendChild(detailLinkText);
+    detailLink.href = `/contacts/?id=${row.id}`;
+
+    const footer = document.createElement("footer");
+    footer.appendChild(detailLink);
+
+    contactInfo.appendChild(footer);
 
     list.appendChild(contact.appendChild(contactInfo));
   });
