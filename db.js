@@ -46,7 +46,10 @@ const db = {
     );
   },
   delete(id) {
-    const index = this.data().findIndex((v) => v.id === id);
-    this.data().splice(index, 1);
+    const data = [...this.data()];
+    const index = data.findIndex((v) => v.id === id);
+    data.splice(index, 1);
+
+    this.data(data);
   },
 };
