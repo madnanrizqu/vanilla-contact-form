@@ -1,11 +1,17 @@
 const main = () => {
   setupEventListeners();
-  renderContactList();
+  renderContactList(db.getAll());
 };
 
 const setupEventListeners = () => {
   const addForm = document.getElementById("add-contact-form");
   addForm.addEventListener("submit", addContact);
+
+  const searchForm = document.getElementById("search-form");
+  searchForm.addEventListener("submit", handleSearch);
+
+  const resetSearchBtn = document.getElementById("reset-search");
+  resetSearchBtn.addEventListener("click", handleResetSearch);
 };
 
 const addContact = (e) => {
@@ -26,14 +32,31 @@ const addContact = (e) => {
 
   addForm.reset();
 
-  renderContactList();
+  renderContactList(db.getAll());
 };
 
-const renderContactList = () => {
+const handleSearch = (e) => {
+  e.preventDefault();
+
+  const searchForm = document.getElementById("search-form");
+
+  const searchData = new FormData(searchForm);
+
+  renderContactList(db.searchByName(searchData.get("name")));
+};
+
+const handleResetSearch = () => {
+  const searchForm = document.getElementById("search-form");
+  searchForm.name.value = "";
+
+  renderContactList(db.getAll());
+};
+
+const renderContactList = (contactList) => {
   const listContainer = document.getElementById("contacts_list");
   listContainer.innerHTML = "";
 
-  if (db.count() === 0) {
+  if (contactList.length === 0) {
     listContainer.appendChild(
       document
         .createElement("p")
@@ -46,8 +69,8 @@ const renderContactList = () => {
   list.classList.add("flex-col");
   list.classList.add("gap-4");
 
-  const hiddenProperties = ["email", "address", "age"];
-  db.getAll().forEach((row) => {
+  const hiddenProperties = ["id", "email", "address", "age"];
+  contactList.forEach((row) => {
     const contact = document.createElement("li");
     const contactInfo = document.createElement("ul");
 
@@ -101,7 +124,7 @@ const upperCaseFirstLetter = (word) =>
 
 const handleDelete = (id) => {
   db.delete(id);
-  renderContactList();
+  renderContactList(db.getAll());
 };
 
 document.addEventListener("DOMContentLoaded", main);

@@ -9,6 +9,11 @@ const db = {
       ? JSON.parse(localStorage.getItem("data"))
       : [];
   },
+  searchByName(name) {
+    return this.data().filter((v) => {
+      return v.name.toUpperCase().indexOf(name.toUpperCase()) > -1;
+    });
+  },
   getContact(id) {
     return this.data().find((v) => {
       return v.id === id;

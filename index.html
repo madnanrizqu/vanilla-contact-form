@@ -12,6 +12,31 @@
   <body class="h-dvh flex flex-col gap-6 items-center pt-10">
     <header>
       <h1>Contact Form</h1>
+      <form id="search-form" action="" class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2">
+          <label for="name"> Search By Name </label>
+          <input
+            required
+            class="border border-neutral-400 p-1 rounded-md"
+            type="text"
+            name="name"
+            id="name"
+          />
+        </div>
+
+        <div class="flex items-center gap-2">
+          <input
+            class="border border-neutral-400 py-1 cursor-pointer w-full rounded-md"
+            type="submit"
+            value="Search"
+          />
+          <input
+            id="reset-search"
+            class="text-center border border-neutral-400 py-1 cursor-pointer w-full rounded-md"
+            value="Reset"
+          />
+        </div>
+      </form>
     </header>
 
     <main class="flex flex-col md:flex-row gap-4">
