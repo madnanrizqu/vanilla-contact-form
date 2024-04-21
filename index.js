@@ -1,5 +1,6 @@
-const db = [
+let db = [
   {
+    id: 0,
     name: "Muhammad Adnan Rizqullah",
     phone: "+6285156562419",
     email: "madnanrizqullah@gmail.com",
@@ -9,11 +10,42 @@ const db = [
 ];
 
 const main = () => {
+  setupEventListeners();
+  renderContactList();
+};
+
+const setupEventListeners = () => {
+  const addForm = document.getElementById("add-contact-form");
+  addForm.addEventListener("submit", addContact);
+};
+
+const addContact = (e) => {
+  e.preventDefault();
+
+  const addForm = document.getElementById("add-contact-form");
+
+  const contactData = new FormData(addForm);
+
+  db = [
+    ...db,
+    {
+      id: db.length + 1,
+      name: contactData.get("name"),
+      phone: contactData.get("phone"),
+      email: contactData.get("email"),
+      address: contactData.get("address"),
+      age: contactData.get("age"),
+    },
+  ];
+
+  addForm.reset();
+
   renderContactList();
 };
 
 const renderContactList = () => {
   const listContainer = document.getElementById("contacts_list");
+  listContainer.innerHTML = "";
 
   if (db.length === 0) {
     listContainer.appendChild(
@@ -30,6 +62,10 @@ const renderContactList = () => {
     const contactInfo = document.createElement("ul");
 
     Object.entries(row).forEach(([key, value]) => {
+      if (key === "id") {
+        return;
+      }
+
       const contactProperty = document.createElement("div");
 
       const label = document

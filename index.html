@@ -9,12 +9,80 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
   </head>
-  <body class="h-dvh flex flex-col gap-6 items-center justify-center">
+  <body class="h-dvh flex flex-col gap-6 items-center pt-10">
     <header>
       <h1>Contact Form</h1>
     </header>
 
-    <main id="contacts_list"></main>
+    <main class="flex flex-col md:flex-row gap-4">
+      <form
+        id="add-contact-form"
+        action="/"
+        class="flex flex-col gap-4 border-b md:border-b-0 border-neutral-400 pb-6 md:pb-0 md:border-r md:pr-5"
+      >
+        <div class="flex flex-col gap-2">
+          <label for="name"> Name </label>
+          <input
+            required
+            class="border border-neutral-400 p-1 rounded-md"
+            type="text"
+            name="name"
+            id="name"
+          />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="phone"> Phone </label>
+          <input
+            required
+            class="border border-neutral-400 p-1 rounded-md"
+            type="tel"
+            name="phone"
+            id="phone"
+          />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="email"> Email </label>
+          <input
+            class="border border-neutral-400 p-1 rounded-md"
+            type="email"
+            name="email"
+            id="email"
+          />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="address"> Address </label>
+          <input
+            class="border border-neutral-400 p-1 rounded-md"
+            type="text"
+            name="address"
+            id="address"
+          />
+        </div>
+
+        <div class="flex flex-col gap-2 mb-3">
+          <label for="age"> Age </label>
+          <input
+            class="border border-neutral-400 p-1 rounded-md"
+            type="number"
+            name="age"
+            id="age"
+          />
+        </div>
+
+        <div>
+          <input
+            class="border border-neutral-400 py-1 cursor-pointer w-full rounded-md"
+            type="submit"
+            value="Add Contact"
+          />
+        </div>
+      </form>
+
+      <div id="contacts_list"></div>
+    </main>
 
     <footer>Made with ❤️ by madnanrizqu</footer>
     <script src="/index.js"></script>
