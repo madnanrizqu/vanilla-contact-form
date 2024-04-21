@@ -10,13 +10,13 @@
     <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body class="h-dvh flex flex-col gap-6 items-center pt-10">
-    <header>
-      <h1>Contact Form - Detail</h1>
-      <div class="flex gap-2 items-center">
+    <header class="flex flex-col gap-2 text-center">
+      <h1 class="text-3xl text-center">Contact Form - Detail</h1>
+      <div class="flex gap-2 items-center justify-center text-sm">
         <span>Id: </span>
         <span id="contact-id-label"></span>
       </div>
-      <a href="/" class="hover:underline">Go back</a>
+      <a href="/" class="text-sm hover:underline">Go back</a>
     </header>
 
     <main class="flex flex-col md:flex-row gap-4">
@@ -91,7 +91,9 @@
       </div>
     </main>
 
-    <footer>Made with ❤️ by madnanrizqu</footer>
+    <footer class="fixed bottom-0 p-4 text-xs">
+      Made with ❤️ by madnanrizqu
+    </footer>
     <script src="/db.js"></script>
     <script src="/contacts/index.js"></script>
   </body>
