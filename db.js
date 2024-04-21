@@ -40,4 +40,8 @@ const db = {
       }
     });
   },
+  delete(id) {
+    const index = this.data.findIndex((v) => v.id === id);
+    this.data.splice(index, 1);
+  },
 };

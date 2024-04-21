@@ -46,7 +46,7 @@ const renderContactList = () => {
   list.classList.add("flex-col");
   list.classList.add("gap-4");
 
-  const hiddenProperties = ["id", "email", "address", "age"];
+  const hiddenProperties = ["email", "address", "age"];
   db.getAll().forEach((row) => {
     const contact = document.createElement("li");
     const contactInfo = document.createElement("ul");
@@ -77,8 +77,16 @@ const renderContactList = () => {
     detailLink.href = `/contacts/?id=${row.id}`;
     detailLink.className = "hover:underline";
 
+    const deleteButton = document.createElement("button");
+    const deleteButtonText = document.createTextNode("Delete");
+    deleteButton.appendChild(deleteButtonText);
+    deleteButton.className = "hover:underline";
+    deleteButton.addEventListener("click", () => handleDelete(row.id));
+
     const footer = document.createElement("footer");
     footer.appendChild(detailLink);
+    footer.appendChild(deleteButton);
+    footer.className = "flex gap-2 items-center";
 
     contactInfo.appendChild(footer);
 
@@ -90,5 +98,10 @@ const renderContactList = () => {
 
 const upperCaseFirstLetter = (word) =>
   word.charAt(0).toUpperCase() + word.slice(1);
+
+const handleDelete = (id) => {
+  db.delete(id);
+  renderContactList();
+};
 
 document.addEventListener("DOMContentLoaded", main);
