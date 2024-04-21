@@ -75,6 +75,7 @@ const renderContactList = () => {
     const detailLinkText = document.createTextNode("Detail");
     detailLink.appendChild(detailLinkText);
     detailLink.href = `/contacts/?id=${row.id}`;
+    detailLink.className = "hover:underline";
 
     const footer = document.createElement("footer");
     footer.appendChild(detailLink);
