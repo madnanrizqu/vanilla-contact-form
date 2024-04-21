@@ -28,4 +28,16 @@ const db = {
   append(contact) {
     this.data = [...this.data, contact];
   },
+  update(id, newContact) {
+    this.data = this.data.map((v) => {
+      if (v.id === id) {
+        return {
+          id,
+          ...newContact,
+        };
+      } else {
+        return v;
+      }
+    });
+  },
 };
