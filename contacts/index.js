@@ -51,6 +51,8 @@ const renderContact = (id) => {
   const updateButtonText = document.createTextNode("Update");
   updateButton.appendChild(updateButtonText);
   updateButton.addEventListener("click", () => showUpdateForm(contactData));
+  updateButton.className =
+    "text-center border border-neutral-400 py-1 cursor-pointer w-full rounded-md mt-4";
 
   contact.appendChild(updateButton);
 };
