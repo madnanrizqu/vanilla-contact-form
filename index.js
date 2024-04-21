@@ -67,6 +67,9 @@ const renderContactList = () => {
   }
 
   const list = document.createElement("ol");
+  list.classList.add("flex");
+  list.classList.add("flex-col");
+  list.classList.add("gap-4");
 
   db.getAll().forEach((row) => {
     const contact = document.createElement("li");
